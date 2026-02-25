@@ -24,8 +24,8 @@ function BaseMap({children}: {children: ReactNode}) {
         <Map
           mapboxAccessToken="pk.eyJ1IjoiY2Fubm9uLWxvY2siLCJhIjoiY21tMTUxbjhqMDVnaDJxcHE2eWp6aGo2ZiJ9.oZFr4GezivM26AkP87Cg-w"
           initialViewState={{
-            longitude: -92.4,
-            latitude: 37.8,
+            longitude: -97.4,
+            latitude: 50.8,
             zoom: 3
           }}
           projection={'globe'}
