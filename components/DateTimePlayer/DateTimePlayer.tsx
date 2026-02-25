@@ -9,8 +9,9 @@ const DateTimePlayer = ({time}: TimePlayerProps) => {
     <Box
       sx={{
         position: 'absolute',
-        top: 16,
-        left: 8,
+        bottom: 48,
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
         p: 1,
         borderRadius: 1,
         zIndex: 9999,

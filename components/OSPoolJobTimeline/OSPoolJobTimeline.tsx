@@ -68,14 +68,14 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
       <Box
         sx={{
           position: 'absolute',
-          bottom: '10%',
+          bottom: 72,
           left: 16,
           zIndex: 1000,
           width: '240px',
-          bgcolor: 'rgba(255, 255, 255, 0.8)',
+          bgcolor: 'rgba(255, 255, 255, 0.5)',
           p: 2,
           borderRadius: 1,
-          boxShadow: 3,
+          boxShadow: 1,
         }}
       >
         <Box display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'} sx={{flexFlow: 'wrap-reverse'}} gap={.2}>
@@ -86,14 +86,14 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
       <Box
         sx={{
           position: 'absolute',
-          bottom: '10%',
+          bottom: 72,
           right: 16,
           zIndex: 1000,
           width: '200px',
-          bgcolor: 'rgba(255, 255, 255, 0.8)',
+          bgcolor: 'rgba(255, 255, 255, 0.5)',
           p: 2,
           borderRadius: 1,
-          boxShadow: 3,
+          boxShadow: 1,
         }}
       >
         <Box display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'} sx={{flexFlow: 'wrap-reverse', justifyContent: 'end'}} gap={.2}>

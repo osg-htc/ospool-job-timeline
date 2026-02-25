@@ -9,14 +9,14 @@ const TimelineProgressBar = ({ progress }: TimelineProgressBarProps) => {
     <Box
       sx={{
         position: 'absolute',
-        top: 0,
+        bottom: 0,
         left: 0,
         margin: 1,
         width: 'calc(100% - 16px)',
-        height: '10%',
+        height: 48
       }}
     >
-      <LinearProgress variant="determinate" value={progress} />
+      <LinearProgress sx={{height: 16, borderRadius: 8, overflow: 'hidden'}} variant="determinate" value={progress} />
     </Box>
   )
 }
