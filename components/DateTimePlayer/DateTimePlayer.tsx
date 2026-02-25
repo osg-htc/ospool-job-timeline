@@ -5,23 +5,20 @@ interface TimePlayerProps {
 }
 
 const DateTimePlayer = ({time}: TimePlayerProps) => {
-
-  console.log(time)
-
   return (
     <Box
       sx={{
         position: 'absolute',
         top: 16,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        bgcolor: 'background.paper',
+        left: 8,
         p: 1,
         borderRadius: 1,
         zIndex: 9999,
+        backgroundColor: 'black',
+        color: 'white',
       }}
     >
-      <p>Current Time: {new Date(time * 1000).toLocaleDateString()}</p>
+      <Box>Current Time: {new Date(time * 1000).toLocaleDateString()}</Box>
     </Box>
   )
 }

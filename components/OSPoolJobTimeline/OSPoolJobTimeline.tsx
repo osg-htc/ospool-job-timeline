@@ -52,7 +52,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
         }
         return prev + 1;
       });
-    }, 100);
+    }, 10);
 
     return () => window.clearInterval(id);
   }, [timeArray]);
@@ -68,9 +68,8 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
       <Box
         sx={{
           position: 'absolute',
-          top: '50%',
+          bottom: '10%',
           left: 16,
-          transform: 'translateY(-50%)',
           zIndex: 1000,
           width: '240px',
           bgcolor: 'rgba(255, 255, 255, 0.8)',
@@ -87,9 +86,8 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
       <Box
         sx={{
           position: 'absolute',
-          top: '50%',
+          bottom: '10%',
           right: 16,
-          transform: 'translateY(-50%)',
           zIndex: 1000,
           width: '200px',
           bgcolor: 'rgba(255, 255, 255, 0.8)',

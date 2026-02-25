@@ -18,7 +18,7 @@ const BoxStack = ({count, boxes} : BoxStackProps) => {
   return (
     <>
       {boxColors.map((color, index) => (
-        <Box sx={{borderRadius: '1px', height: SCALING_FACTOR, width: SCALING_FACTOR, backgroundColor: color}}>&nbsp;</Box>
+        <Box key={boxArray[index]} sx={{borderRadius: '1px', height: SCALING_FACTOR, width: SCALING_FACTOR, backgroundColor: color}}>&nbsp;</Box>
       ))}
     </>
   )
