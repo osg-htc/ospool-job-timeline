@@ -4,6 +4,9 @@ import ExecutionPointMarkers from "@/components/ExecutionPointMarkers";
 import {JobResource} from "@/app/types";
 import {useEffect, useState, useMemo} from "react";
 import DateTimePlayer from "@/components/DateTimePlayer";
+import {Box, Typography} from "@mui/material";
+import BoxStack from "@/components/BoxStack/BoxStack";
+import TimelineProgressBar from "@/components/TimelineProgressBar";
 
 interface OSPoolJobTimelineProps {
   startTime: number;
@@ -12,7 +15,7 @@ interface OSPoolJobTimelineProps {
   timeSegments?: number;
 }
 
-const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100}: OSPoolJobTimelineProps) => {
+const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 1000}: OSPoolJobTimelineProps) => {
 
   // number of points to generate (at least 2 so we include start and end)
   const segments = Math.max(2, Math.floor(timeSegments));
@@ -49,15 +52,57 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
         }
         return prev + 1;
       });
-    }, 1000);
+    }, 100);
 
     return () => window.clearInterval(id);
   }, [timeArray]);
 
   const time = timeArray[Math.min(timeIndex, timeArray.length - 1)] ?? startTime;
 
+  const jobsToRun = Object.values(jobResources).flatMap(r => r.jobs.filter(j => time < j.CompletionDate))
+  const jobsRan = Object.values(jobResources).flatMap(r => r.jobs.filter(j => time >= j.CompletionDate))
+
   return (
     <>
+      <TimelineProgressBar progress={(timeIndex / timeArray.length) * 100} />
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: 16,
+          transform: 'translateY(-50%)',
+          zIndex: 1000,
+          width: '240px',
+          bgcolor: 'rgba(255, 255, 255, 0.8)',
+          p: 2,
+          borderRadius: 1,
+          boxShadow: 3,
+        }}
+      >
+        <Box display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'} sx={{flexFlow: 'wrap-reverse'}} gap={.2}>
+          <BoxStack boxes={jobsToRun.map(x => x.GlobalJobId)} />
+        </Box>
+        <Typography mt={1} variant="subtitle2" component="div">Jobs To Run</Typography>
+      </Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          right: 16,
+          transform: 'translateY(-50%)',
+          zIndex: 1000,
+          width: '200px',
+          bgcolor: 'rgba(255, 255, 255, 0.8)',
+          p: 2,
+          borderRadius: 1,
+          boxShadow: 3,
+        }}
+      >
+        <Box display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'} sx={{flexFlow: 'wrap-reverse', justifyContent: 'end'}} gap={.2}>
+          <BoxStack boxes={jobsRan.map(x => x.GlobalJobId)} />
+        </Box>
+        <Typography mt={1} textAlign={"right"} variant="subtitle2" component="div">Jobs Completed</Typography>
+      </Box>
       <ExecutionPointMarkers time={time} jobResources={jobResources} />
       <DateTimePlayer time={time} />
     </>
