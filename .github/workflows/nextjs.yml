@@ -35,6 +35,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NEXT_PUBLIC_BASE_PATH: /ospool-job-timeline
+      HOSTNAME: "osg-htc.org/ospool-job-timeline"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
