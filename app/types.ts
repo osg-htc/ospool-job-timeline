@@ -9,7 +9,7 @@ export interface JobRecord {
   longitude: number;
   latitude: number;
   EpochId: number;
-  RunId: number;
+  RunId: string;
 }
 
 export interface JobResource {

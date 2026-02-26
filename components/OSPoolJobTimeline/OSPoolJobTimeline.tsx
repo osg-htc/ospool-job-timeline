@@ -1,7 +1,7 @@
 "use client";
 
 import ExecutionPointMarkers from "@/components/ExecutionPointMarkers";
-import {JobResource} from "@/app/types";
+import {JobRecord, JobResource} from "@/app/types";
 import {useEffect, useState, useMemo} from "react";
 import DateTimePlayer from "@/components/DateTimePlayer";
 import {Box, Typography} from "@mui/material";
@@ -59,10 +59,21 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
 
   const time = timeArray[Math.min(timeIndex, timeArray.length - 1)] ?? startTime;
 
-  const allJobs = Object.values(jobResources).flatMap(r => r.jobs).sort((a, b) => a.CompletionDate - b.CompletionDate);
+  const allJobs = Object.values(jobResources).flatMap(r => r.jobs).sort((a, b) => b.CompletionDate - a.CompletionDate);
 
-  const jobsToRun = allJobs.filter(j => time < j.CompletionDate)
-  const jobsRan = allJobs.filter(j => time >= j.CompletionDate)
+  const jobsByRun = allJobs.reduce((acc, job) => {
+    const runId = job.RunId || 'Unknown Run';
+    if (!acc[runId]) {
+      acc[runId] = {runId, jobsToRun: [], jobsRan: []};
+    }
+    if (time < job.CompletionDate) {
+      acc[runId].jobsToRun.push(job);
+    } else {
+      acc[runId].jobsRan.push(job);
+    }
+    return acc;
+
+  }, {} as Record<string, {runId: string, jobsToRun: JobRecord[], jobsRan: JobRecord[]}>)
 
   return (
     <>
@@ -78,13 +89,22 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
           borderRadius: 1,
         }}
       >
-        <Box display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'} sx={{flexFlow: 'wrap-reverse'}} gap={.2}>
-          <BoxStack
-            transform={"top"}
-            jobs={jobsToRun}
-          />
-        </Box>
-        <Typography mt={1} variant="subtitle2" component="div">Epochs To Run</Typography>
+        {Object.entries(jobsByRun).map(([runId, { jobsToRun }]) => (
+          <Box>
+            {jobsToRun.length > 0 && (
+              <>
+                <hr/>
+                <Box key={runId} display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'}
+                     sx={{flexFlow: 'wrap'}} gap={.2}>
+                  <BoxStack
+                    transform={"top"}
+                    jobs={jobsToRun}/>
+                </Box>
+              </>
+            )}
+          </Box>
+        ))}
+        <Typography mt={1} variant="subtitle2" component="div">Training Epoch Groups By Run</Typography>
       </Box>
       <Box
         sx={{
@@ -101,7 +121,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
         <Box display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'} sx={{flexFlow: 'wrap-reverse', justifyContent: 'end'}} gap={.2}>
           <BoxStack
             transform={"left"}
-            jobs={jobsRan}
+            jobs={Object.values(jobsByRun).flatMap(r => r.jobsRan)}
           />
         </Box>
         <Typography mt={1} textAlign={"right"} variant="subtitle2" component="div">Epochs Completed</Typography>

@@ -25,7 +25,7 @@ const StackedBox = ({color, borderColor, scalingFactor, transform, children}: St
         borderRadius: '1px',
         height: scalingFactor,
         width: scalingFactor,
-        borderWidth: '4px',
+        borderWidth: '0px',
         borderStyle: 'solid',
         borderColor: borderColor,
         backgroundColor: color,
