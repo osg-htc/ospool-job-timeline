@@ -81,7 +81,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
         }}
       >
         <Box display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'} sx={{flexFlow: 'wrap-reverse'}} gap={.2}>
-          <BoxStack transform={"top"} boxes={jobsToRun.map(x => x.GlobalJobId)} />
+          <BoxStack transform={"top"} boxes={jobsToRun.map(x =>  x.MachineAttrAnnexName0 || x.ResourceName)} />
         </Box>
         <Typography mt={1} variant="subtitle2" component="div">Jobs To Run</Typography>
       </Box>
@@ -99,7 +99,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
         }}
       >
         <Box display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'} sx={{flexFlow: 'wrap-reverse', justifyContent: 'end'}} gap={.2}>
-          <BoxStack transform={"right"} boxes={jobsRan.map(x => x.GlobalJobId)} />
+          <BoxStack transform={"left"} boxes={jobsRan.map(x => x.MachineAttrAnnexName0 || x.ResourceName)} />
         </Box>
         <Typography mt={1} textAlign={"right"} variant="subtitle2" component="div">Jobs Completed</Typography>
       </Box>

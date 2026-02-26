@@ -3,6 +3,7 @@
 import {Marker} from 'react-map-gl/mapbox';
 
 import {JobRecord, JobResource} from "@/app/types";
+import {stringToColor} from "@/util/stringToColor";
 
 interface ExecutionPointMarkersProps {
   time: number;
@@ -38,7 +39,7 @@ const ExecutionPointMarkers = ({time, jobResources}: ExecutionPointMarkersProps)
               style={{display: 'block'}}
             >
               {/* single rectangle whose height equals markerHeight and is visible */}
-              <rect x={8} y={0} width={8} height={markerHeight} fill="#1f2937" rx={2} />
+              <rect x={8} y={0} width={8} height={markerHeight} fill={stringToColor(r.name)} rx={2} />
             </svg>
           </Marker>
         )

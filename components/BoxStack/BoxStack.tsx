@@ -20,7 +20,7 @@ const BoxStack = ({count, boxes, transform} : BoxStackProps) => {
     <>
       {boxColors.map((color, index) => (
         <StackedBox
-          key={boxArray[index]}
+          key={index}
           color={color}
           scalingFactor={SCALING_FACTOR}
           transform={transform || "bottom"}
