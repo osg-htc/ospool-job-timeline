@@ -8,6 +8,8 @@ export interface JobRecord {
   ResourceName: string;
   longitude: number;
   latitude: number;
+  EpochId: number;
+  RunId: number;
 }
 
 export interface JobResource {

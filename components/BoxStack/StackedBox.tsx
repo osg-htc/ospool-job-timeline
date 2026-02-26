@@ -2,8 +2,10 @@ import {Box} from "@mui/material";
 
 interface StackedBoxProps {
   color: string;
+  borderColor?: string;
   scalingFactor?: number;
   transform: "bottom" | "top" | "left" | "right";
+  children?: React.ReactNode;
 }
 
 const axisMap: Record<StackedBoxProps["transform"], { scale: "scaleX" | "scaleY" }> = {
@@ -13,7 +15,7 @@ const axisMap: Record<StackedBoxProps["transform"], { scale: "scaleX" | "scaleY"
   right:  { scale: "scaleX" },
 };
 
-const StackedBox = ({color, scalingFactor, transform}: StackedBoxProps) => {
+const StackedBox = ({color, borderColor, scalingFactor, transform, children}: StackedBoxProps) => {
   const { scale } = axisMap[transform];
   const animationName = `expandFrom${transform.charAt(0).toUpperCase() + transform.slice(1)}`;
 
@@ -23,6 +25,9 @@ const StackedBox = ({color, scalingFactor, transform}: StackedBoxProps) => {
         borderRadius: '1px',
         height: scalingFactor,
         width: scalingFactor,
+        borderWidth: '4px',
+        borderStyle: 'solid',
+        borderColor: borderColor,
         backgroundColor: color,
         transformOrigin: transform,
         animation: `${animationName} 0.2s ease-out`,
@@ -32,7 +37,7 @@ const StackedBox = ({color, scalingFactor, transform}: StackedBoxProps) => {
         },
       }}
     >
-      &nbsp;
+      {children || <>&nbsp;</>}
     </Box>
   )
 }

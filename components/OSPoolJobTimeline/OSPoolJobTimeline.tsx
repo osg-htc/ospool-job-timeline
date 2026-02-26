@@ -73,17 +73,18 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
           bottom: 72,
           left: 16,
           zIndex: 1000,
-          width: '240px',
-          bgcolor: 'rgba(255, 255, 255, 0.5)',
+          width: '20%',
           p: 2,
           borderRadius: 1,
-          boxShadow: 1,
         }}
       >
         <Box display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'} sx={{flexFlow: 'wrap-reverse'}} gap={.2}>
-          <BoxStack transform={"top"} boxes={jobsToRun.map(x =>  x.MachineAttrAnnexName0 || x.ResourceName)} />
+          <BoxStack
+            transform={"top"}
+            jobs={jobsToRun}
+          />
         </Box>
-        <Typography mt={1} variant="subtitle2" component="div">Jobs To Run</Typography>
+        <Typography mt={1} variant="subtitle2" component="div">Epochs To Run</Typography>
       </Box>
       <Box
         sx={{
@@ -91,17 +92,19 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
           bottom: 72,
           right: 16,
           zIndex: 1000,
-          width: '200px',
-          bgcolor: 'rgba(255, 255, 255, 0.5)',
+          width: '20%',
+          bgcolor: 'rgba(255, 255, 255, 0.0)',
           p: 2,
-          borderRadius: 1,
-          boxShadow: 1,
+          borderRadius: 1
         }}
       >
         <Box display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'} sx={{flexFlow: 'wrap-reverse', justifyContent: 'end'}} gap={.2}>
-          <BoxStack transform={"left"} boxes={jobsRan.map(x => x.MachineAttrAnnexName0 || x.ResourceName)} />
+          <BoxStack
+            transform={"left"}
+            jobs={jobsRan}
+          />
         </Box>
-        <Typography mt={1} textAlign={"right"} variant="subtitle2" component="div">Jobs Completed</Typography>
+        <Typography mt={1} textAlign={"right"} variant="subtitle2" component="div">Epochs Completed</Typography>
       </Box>
       <ExecutionPointMarkers time={time} jobResources={jobResources} />
       <DateTimePlayer time={time} />

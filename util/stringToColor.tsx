@@ -7,7 +7,7 @@
  *
  * This keeps colors consistent between runs and produces visually distinct colors.
  */
-export function stringToColor(input: string): string {
+export function stringToColor(input: string, saturation: number = 60, lightness: number = 50): string {
 	if (!input) return '#777777';
 
 	// Simple string hash (djb2-like)
@@ -17,8 +17,6 @@ export function stringToColor(input: string): string {
 	}
 
 	const hue = Math.abs(hash) % 360; // 0-359
-	const saturation = 60; // percent
-	const lightness = 50; // percent
 
 	return hslToHex(hue, saturation, lightness);
 }
