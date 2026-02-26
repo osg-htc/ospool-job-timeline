@@ -59,8 +59,10 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
 
   const time = timeArray[Math.min(timeIndex, timeArray.length - 1)] ?? startTime;
 
-  const jobsToRun = Object.values(jobResources).flatMap(r => r.jobs.filter(j => time < j.CompletionDate))
-  const jobsRan = Object.values(jobResources).flatMap(r => r.jobs.filter(j => time >= j.CompletionDate))
+  const allJobs = Object.values(jobResources).flatMap(r => r.jobs).sort((a, b) => a.CompletionDate - b.CompletionDate);
+
+  const jobsToRun = allJobs.filter(j => time < j.CompletionDate)
+  const jobsRan = allJobs.filter(j => time >= j.CompletionDate)
 
   return (
     <>
@@ -79,7 +81,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
         }}
       >
         <Box display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'} sx={{flexFlow: 'wrap-reverse'}} gap={.2}>
-          <BoxStack boxes={jobsToRun.map(x => x.GlobalJobId)} />
+          <BoxStack transform={"top"} boxes={jobsToRun.map(x => x.GlobalJobId)} />
         </Box>
         <Typography mt={1} variant="subtitle2" component="div">Jobs To Run</Typography>
       </Box>
@@ -97,7 +99,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
         }}
       >
         <Box display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'} sx={{flexFlow: 'wrap-reverse', justifyContent: 'end'}} gap={.2}>
-          <BoxStack boxes={jobsRan.map(x => x.GlobalJobId)} />
+          <BoxStack transform={"right"} boxes={jobsRan.map(x => x.GlobalJobId)} />
         </Box>
         <Typography mt={1} textAlign={"right"} variant="subtitle2" component="div">Jobs Completed</Typography>
       </Box>
