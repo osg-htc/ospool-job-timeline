@@ -16,7 +16,7 @@ const BoxStack = ({jobs, transform} : BoxStackProps) => {
       {jobs.map((j, index) => (
         <StackedBox
           key={j.GlobalJobId}
-          color={stringToColor(j.MachineAttrAnnexName0 || j.ResourceName)}
+          color={stringToColor(j.RunId)}
           borderColor={colorScale[j.EpochId]}
           scalingFactor={SCALING_FACTOR}
           transform={transform || "bottom"}
