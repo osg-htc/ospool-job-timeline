@@ -104,7 +104,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
             )}
           </Box>
         ))}
-        <Typography mt={1} variant="subtitle2" component="div">Training Epoch Groups By Run</Typography>
+        <Typography mt={1} variant="subtitle2" component="div">Training Epochs Grouped By Run</Typography>
       </Box>
       <Box
         sx={{
