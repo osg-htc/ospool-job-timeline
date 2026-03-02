@@ -4,22 +4,26 @@ import {JobRecord} from "@/app/types";
 import {Typography} from "@mui/material";
 
 interface BoxStackProps {
-  jobs: JobRecord[]
+  jobs: JobRecord[];
+  displayFunction?: (job: JobRecord) => boolean;
   transform?: "bottom" | "top" | "left" | "right";
+  size?: number;
 }
 
 const SCALING_FACTOR = 12;
 
-const BoxStack = ({jobs, transform} : BoxStackProps) => {
+const BoxStack = ({jobs, displayFunction, transform, size} : BoxStackProps) => {
   return (
     <>
       {jobs.map((j, index) => (
         <StackedBox
           key={j.GlobalJobId}
+          display={displayFunction ? displayFunction(j) : true}
           color={stringToColor(j.RunId)}
           borderColor={colorScale[j.EpochId]}
           scalingFactor={SCALING_FACTOR}
           transform={transform || "bottom"}
+          size={size}
         >
           <Typography variant="subtitle2" sx={{fontSize: '.5rem', textAlign: 'center'}} component="div">
             {<>&nbsp;</> || j.RunId}
