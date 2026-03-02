@@ -7,6 +7,7 @@ import DateTimePlayer from "@/components/DateTimePlayer";
 import {Box, Typography} from "@mui/material";
 import BoxStack from "@/components/BoxStack/BoxStack";
 import {stringToColor} from "@/util/stringToColor";
+import TimelineProgressBar from "@/components/TimelineProgressBar";
 
 interface OSPoolJobTimelineProps {
   startTime: number;
@@ -85,13 +86,16 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
     return acc;
   }, {} as Record<string, {runId: string, jobs: JobRecord[]}>)
 
+  const jobsRan = allJobs.filter(j => j.CompletionDate <= time);
+  const jobsThatWillRun = allJobs.filter(j => j.CompletionDate <= endTime);
+
   return (
     <>
-      {/*<TimelineProgressBar progress={(jobsRan.length / allJobs.length) * 100} />*/}
+      <TimelineProgressBar progress={(jobsRan.length / jobsThatWillRun.length) * 100} />
       <Box
         sx={{
           position: 'absolute',
-          bottom: 24,
+          bottom: 48,
           left: 16,
           zIndex: 1000,
           width: '20%',
@@ -125,6 +129,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
                   transform={"left"}
                   displayFunction={j => j.CompletionDate > time}
                   jobs={jobs}
+                  mute={time == endTime}
                   size={8}
                 />
               </Box>
@@ -137,7 +142,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
       <Box
         sx={{
           position: 'absolute',
-          bottom: 24,
+          bottom: 48,
           right: 16,
           zIndex: 1000,
           width: '10%',

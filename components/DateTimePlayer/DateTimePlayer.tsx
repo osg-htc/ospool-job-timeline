@@ -15,7 +15,7 @@ const DateTimePlayer = ({time, isPaused, onPause, onReset}: TimePlayerProps) => 
     <Box
       sx={{
         position: 'absolute',
-        bottom: 0,
+        bottom: 48,
         left: '50%',
         transform: 'translate(-50%, -50%)',
         p: 1,
