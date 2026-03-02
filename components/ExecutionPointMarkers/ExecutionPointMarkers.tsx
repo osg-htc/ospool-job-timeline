@@ -21,7 +21,7 @@ const ExecutionPointMarkers = ({time, jobResources}: ExecutionPointMarkersProps)
         const markerHeight = 2
 
         const isOspool = r.jobs[0].MachineAttrAnnexName0 === null
-        const markerSize = 8;
+        const markerSize = 12;
         const svgWidth = 28;
         const stackHeight = markerHeight * jobsRan.length;
         const totalHeight = stackHeight + markerSize;
