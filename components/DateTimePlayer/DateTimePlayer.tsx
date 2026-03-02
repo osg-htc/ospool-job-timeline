@@ -34,7 +34,7 @@ const DateTimePlayer = ({time, isPaused, onPause, onReset}: TimePlayerProps) => 
       <IconButton size="small" onClick={onReset} sx={{color: 'white'}}>
         <ReplayIcon fontSize="small" />
       </IconButton>
-      <Box>Current Time: {new Date(time * 1000).toLocaleDateString()}</Box>
+      <Box sx={{fontWeight: 700}}>Current Time: {new Date(time * 1000).toLocaleDateString()}</Box>
     </Box>
   )
 }
