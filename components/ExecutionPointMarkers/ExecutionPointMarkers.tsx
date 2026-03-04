@@ -1,6 +1,7 @@
 'use client';
 
-import {Marker} from 'react-map-gl/mapbox';
+import {useState} from 'react';
+import {Marker, Popup} from 'react-map-gl/mapbox';
 
 import {JobRecord, JobResource} from "@/app/types";
 import {stringToColor} from "@/util/stringToColor";
@@ -11,6 +12,7 @@ interface ExecutionPointMarkersProps {
 }
 
 const ExecutionPointMarkers = ({time, jobResources}: ExecutionPointMarkersProps) => {
+  const [hoveredResource, setHoveredResource] = useState<string | null>(null);
 
   return (
     <>
@@ -20,7 +22,7 @@ const ExecutionPointMarkers = ({time, jobResources}: ExecutionPointMarkersProps)
         // compute a pixel height so the svg is visible even when `height` is 0
         const markerHeight = 2
 
-        const isOspool = r.jobs[0].MachineAttrAnnexName0 === null
+        const isOspool = r.jobs[0].MachineAttrAnnexName0 === "UNKNOWN"
         const markerSize = 12;
         const svgWidth = 28;
         const stackHeight = markerHeight * jobsRan.length;
@@ -40,7 +42,9 @@ const ExecutionPointMarkers = ({time, jobResources}: ExecutionPointMarkersProps)
               viewBox={`0 0 ${svgWidth} ${totalHeight}`}
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
-              style={{display: 'block'}}
+              style={{display: 'block', cursor: 'pointer'}}
+              onMouseEnter={() => setHoveredResource(r.name)}
+              onMouseLeave={() => setHoveredResource(null)}
             >
               {
                 jobsRan.length > 0 && (
@@ -57,6 +61,22 @@ const ExecutionPointMarkers = ({time, jobResources}: ExecutionPointMarkersProps)
           </Marker>
         )
       })}
+      {hoveredResource && (() => {
+        const r = Object.values(jobResources).find(r => r.name === hoveredResource);
+        if (!r) return null;
+        return (
+          <Popup
+            longitude={r.longitude}
+            latitude={r.latitude}
+            anchor="top"
+            closeButton={false}
+            closeOnClick={false}
+            style={{pointerEvents: 'none'}}
+          >
+            <span style={{fontSize: '0.75rem', fontWeight: 600, whiteSpace: 'nowrap'}}>{r.name}</span>
+          </Popup>
+        );
+      })()}
     </>
   )
 }

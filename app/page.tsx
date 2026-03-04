@@ -46,10 +46,56 @@ export default async function Home() {
     jobRecords.push(...uniqueJobsForRun.map(x => x.jobRecord))
   })
 
-  console.log("Total jobs after deduplication:", jobRecords.length)
-
   runIds.forEach(runId => {
     // Make sure there are at least 30 jobs for each RunId, if not add in incomplete jobs with a very high CompletionDate so they appear at the end of the timeline
+    const maxEpochId = Math.max(...jobRecords.filter(j => j.RunId === runId).map(j => j.EpochId))
+
+    // For x in [1, 30], if there is no job with EpochId x for this RunId, add in an incomplete job with EpochId x
+    for (let epochId = 1; epochId <= 30; epochId++) {
+      if (!jobRecords.some(j => j.RunId === runId && j.EpochId === epochId)) {
+
+        // If this is the first epoch we have to start somewhere
+        if(epochId === 1) {
+          const incompleteJob: JobRecord = {
+            GlobalJobId: `incomplete-${runId}-${epochId}`,
+            RunId: runId,
+            EpochId: epochId,
+            JobStartDate: startTime + 1,
+            CompletionDate: startTime + 2,
+            latitude: 0,
+            longitude: 0,
+            ResourceName: 'Unknown',
+            MachineAttrAnnexName0: null,
+            MachineAttrOSG_INSTITUTION_ID0: null,
+            MachineAttrGLIDEIN_ResourceName0: "Unknown",
+          }
+          jobRecords.push(incompleteJob);
+        } else {
+
+          if(epochId === 30) {
+            console.log(`Adding incomplete job with very high CompletionDate.`)
+          }
+
+          const previousEpochJob = jobRecords.filter(j => j.RunId === runId && j.EpochId === epochId - 1)[0]
+          const incompleteJob: JobRecord = {
+            GlobalJobId: `incomplete-${runId}-${epochId}`,
+            RunId: runId,
+            EpochId: epochId,
+            JobStartDate: epochId <= maxEpochId ? previousEpochJob['CompletionDate'] + 1 : 999999999999999998,
+            CompletionDate: epochId <= maxEpochId ? previousEpochJob['CompletionDate'] + 2 : 99999999999999999,
+            latitude: 0,
+            longitude: 0,
+            ResourceName: 'Unknown',
+            MachineAttrAnnexName0: null,
+            MachineAttrOSG_INSTITUTION_ID0: null,
+            MachineAttrGLIDEIN_ResourceName0: "Unknown",
+          }
+          jobRecords.push(incompleteJob);
+        }
+      }
+    }
+
+
     while (jobRecords.filter(j => j.RunId === runId).length < 30) {
       const incompleteJob = {...jobRecords.filter(j => j.RunId === runId)[0]}
       incompleteJob.CompletionDate = 9999999999999;
@@ -74,7 +120,7 @@ export default async function Home() {
   jobRecords.sort((a, b) => a.CompletionDate - b.CompletionDate)
 
   const jobResources = jobRecords.reduce((acc, job) => {
-    const name = job.MachineAttrAnnexName0 || job.ResourceName || 'Unknown'
+    const name = job.ResourceName || job.MachineAttrAnnexName0 || 'Unknown'
     const key = `${name}-${job.latitude}-${job.longitude}`
 
     if (!acc[key]) {

@@ -16,7 +16,7 @@ const TimelineProgressBar = ({ progress }: TimelineProgressBarProps) => {
         height: 48
       }}
     >
-      <LinearProgress sx={{height: 16, borderRadius: 8, overflow: 'hidden'}} variant="determinate" value={progress} />
+      <LinearProgress sx={{height: 48, borderRadius: 2, overflow: 'hidden'}} variant="determinate" value={progress} />
     </Box>
   )
 }

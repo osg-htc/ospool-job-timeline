@@ -40,10 +40,11 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
 
   // index into the timeArray
   const [timeIndex, setTimeIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused, setIsPaused] = useState(true);
+  const [speed, setSpeed] = useState(1);
 
   const handlePause = () => setIsPaused(p => !p);
-  const handleReset = () => { setTimeIndex(0); setIsPaused(false); };
+  const handleReset = () => { setTimeIndex(0); };
 
   // advance one step per second; reset when the source array changes
   useEffect(() => {
@@ -51,7 +52,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
 
     let rafId: number;
     let lastTimestamp: number | null = null;
-    const msPerStep = 10;
+    const msPerStep = 100 / speed;
 
     const tick = (timestamp: number) => {
       if (lastTimestamp === null) lastTimestamp = timestamp;
@@ -71,7 +72,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
 
     rafId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafId);
-  }, [timeArray, isPaused]);
+  }, [timeArray, isPaused, speed]);
 
   const time = timeArray[Math.min(timeIndex, timeArray.length - 1)] ?? startTime;
 
@@ -91,7 +92,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
 
   return (
     <>
-      <TimelineProgressBar progress={(jobsRan.length / jobsThatWillRun.length) * 100} />
+      <TimelineProgressBar progress={( 1 - ((time - endTime) / (startTime - endTime))) * 100} />
       <Box
         sx={{
           position: 'absolute',
@@ -103,40 +104,57 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
           borderRadius: 1,
         }}
       >
-        {Object.entries(jobsByRun).reverse().map(([runId, { jobs }], index) => (
-          <Box key={runId}>
-            <Box display={'flex'} flexDirection={'row'} alignItems={'center'}>
-              <Box
-                sx={{
-                  borderRadius: '1px',
-                  height: 20,
-                  width: 20,
-                  borderWidth: '0px',
-                  borderStyle: 'solid',
-                  backgroundColor: stringToColor(runId),
-                  mr: 1,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}
-              >
-                {runId.charAt(0).toUpperCase() + runId.charAt(1).toUpperCase()}
-              </Box>
-              <Box key={runId} display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'}
-                   sx={{flexFlow: 'wrap'}} gap={.2} alignItems={'center'}>
-                <BoxStack
-                  transform={"left"}
-                  displayFunction={j => j.CompletionDate > time}
-                  jobs={jobs}
-                  mute={time == endTime}
-                  size={8}
-                />
-              </Box>
-            </Box>
+        {Object.entries(jobsByRun).reverse().map(([runId, { jobs }], index) => {
 
-          </Box>
-        ))}
+          if(jobs[29].JobStartDate > time) {
+            return null
+          }
+
+          return (
+            <Box key={runId}>
+              <Box display={'flex'} flexDirection={'row'} alignItems={'center'}>
+                <Box
+                  sx={{
+                    borderRadius: '1px',
+                    height: 20,
+                    width: 20,
+                    borderWidth: '0px',
+                    borderStyle: 'solid',
+                    backgroundColor: stringToColor(runId),
+                    mr: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}
+                >
+                  {runId.charAt(0).toUpperCase() + runId.charAt(1).toUpperCase()}
+                </Box>
+                <Box key={runId} display="flex" flexDirection="row" height={"100%"} flexWrap={'wrap'}
+                     sx={{flexFlow: 'wrap'}} gap={.2} alignItems={'center'}>
+                  <BoxStack
+                    transform={"left"}
+                    displayFunction={j => j.CompletionDate > time}
+                    jobs={jobs}
+                    mute={time == endTime}
+                    size={8}
+                  />
+                </Box>
+              </Box>
+
+            </Box>
+          )
+        })}
+        <Box
+          sx={{
+            mt:1,
+            height: "8px",
+            width: "315px",
+            backgroundColor: 'black',
+            borderRadius: '2px',
+            overflow: 'hidden',
+          }}
+        ></Box>
         <Typography mt={1} variant="subtitle2" component="div">Training Epochs Grouped By Run</Typography>
       </Box>
       <Box
@@ -145,7 +163,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
           bottom: 48,
           right: 16,
           zIndex: 1000,
-          width: '10%',
+          width: '15%',
           bgcolor: 'rgba(255, 255, 255, 0.0)',
           p: 2,
           borderRadius: 1
@@ -160,8 +178,30 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
         </Box>
         <Typography mt={1} textAlign={"right"} variant="subtitle2" component="div">Epochs Completed</Typography>
       </Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: 16,
+          zIndex: 999999,
+          display: 'flex',
+          flexDirection: 'row',
+          gap: 4,
+          borderRadius: 1,
+          width: '100vw',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Box display={"flex"} width={"100%"} justifyContent={"space-between"} p={2}>
+          <Box>
+            <Typography variant="body2" sx={{fontWeight: 600}}>{new Date(startTime * 1000).toLocaleDateString()}</Typography>
+          </Box>
+          <Box>
+            <Typography variant="body2" sx={{fontWeight: 600}}>{new Date(endTime * 1000).toLocaleDateString()}</Typography>
+          </Box>
+        </Box>
+      </Box>
       <ExecutionPointMarkers time={time} jobResources={jobResources} />
-      <DateTimePlayer time={time} isPaused={isPaused} onPause={handlePause} onReset={handleReset} />
+      <DateTimePlayer time={time} isPaused={isPaused} speed={speed} setSpeed={setSpeed} onPause={handlePause} onReset={handleReset} />
     </>
   );
 }
