@@ -11,6 +11,21 @@ interface ExecutionPointMarkersProps {
   jobResources: Record<string, JobResource>;
 }
 
+
+const resourceNameMap: Record<string, string> = {
+  "PDX-Coeus-CE1": "Portland State University",
+  "CHTC-Spark-CE1": "UW–Madison CHTC",
+  "delta_annex": "NCSA Delta",
+  "expanse_annex": "SDSC Expanse",
+  "Duke-NCShare-CE1": "Duke University",
+  "bridges2_annex": "PSC Bridges-2",
+  "aws": "Amazon Web Services",
+  "Colgate-CCARE-EP": "Colgate University",
+  "UIUC-TGI-RAILS-CE1": "University of Illinois Urbana-Champaign",
+  "MTState-Tempest-CE1": "Montana State University",
+}
+
+
 const ExecutionPointMarkers = ({time, jobResources}: ExecutionPointMarkersProps) => {
   const [hoveredResource, setHoveredResource] = useState<string | null>(null);
 
@@ -73,7 +88,7 @@ const ExecutionPointMarkers = ({time, jobResources}: ExecutionPointMarkersProps)
             closeOnClick={false}
             style={{pointerEvents: 'none'}}
           >
-            <span style={{fontSize: '0.75rem', fontWeight: 600, whiteSpace: 'nowrap'}}>{r.name}</span>
+            <span style={{fontSize: '0.75rem', fontWeight: 600, whiteSpace: 'nowrap'}}>{resourceNameMap[r.name] ?? r.name}</span>
           </Popup>
         );
       })()}

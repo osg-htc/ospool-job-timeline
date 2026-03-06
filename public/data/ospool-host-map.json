@@ -1,0 +1,344 @@
+{
+  "SUBMIT04.MIT.EDU": [
+    "submit04.mit.edu"
+  ],
+  "amundsen.grid.uchicago.edu": [
+    "amundsen.grid.uchicago.edu",
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "ap1.facility.path-cc.io": [
+    "htcondor-cm-path.osg.chtc.io"
+  ],
+  "ap20.uc.osg-htc.org": [
+    "ap20.uc.osg-htc.org",
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "ap2001.chtc.wisc.edu": [
+    "cm.chtc.wisc.edu"
+  ],
+  "ap2002.chtc.wisc.edu": [
+    "cm.chtc.wisc.edu"
+  ],
+  "ap2007.chtc.wisc.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "ap21.uc.osg-htc.org": [
+    "ap21.uc.osg-htc.org",
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "ap22.uc.osg-htc.org": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "ap23.uc.osg-htc.org": [
+    "ap23.uc.osg-htc.org",
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "ap40.uw.osg-htc.org": [
+    "ap40.uw.osg-htc.org",
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "ap41.uw.osg-htc.org": [
+    "ap41.uw.osg-htc.org",
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "ap42.uw.osg-htc.org": [
+    "ap42.uw.osg-htc.org",
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "ap43.uw.osg-htc.org": [
+    "ap43.uw.osg-htc.org",
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "ap7.chtc.wisc.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "ap7.chtc.wisc.edu@ap2007.chtc.wisc.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "ce1.opensciencegrid.org": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "chtc.ap0.jsums.edu": [
+    "chtc.ap0.jsums.edu"
+  ],
+  "comses.sol.rc.asu.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "condor.scigap.org": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "cpass.unl.edu": [
+    "cpass.unl.edu"
+  ],
+  "descmp3.cosmology.illinois.edu": [
+    "flock.opensciencegrid.org"
+  ],
+  "gluex.phys.uconn.edu": [
+    "gremlin.phys.uconn.edu"
+  ],
+  "gpatlas2.ps.uci.edu": [
+    "gpatlas2.ps.uci.edu"
+  ],
+  "gremlin.phys.uconn.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "grid-submitter.icecube.wisc.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "htc-login-test.campuscluster.illinois.edu": [
+    "htc-login-test.cc.internal.ncsa.edu"
+  ],
+  "htc-login1.campuscluster.illinois.edu": [
+    "htc-login1.cc.internal.ncsa.edu"
+  ],
+  "htcss-dev-ap.ospool.opensciencegrid.org": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "hub2osg@localhost": [
+    "scatter2.dev.nanohub.hub.rcac.purdue.edu"
+  ],
+  "hub2osg@scatter2.dev.nanohub.hub.rcac.purdue.edu": [
+    "scatter2.dev.nanohub.hub.rcac.purdue.edu"
+  ],
+  "hub2osg@scatter2.dev.nanohub.org": [
+    "scatter2.dev.nanohub.org"
+  ],
+  "hub2osg@scatter2.nanohub.hub.rcac.purdue.edu": [
+    "scatter2.nanohub.hub.rcac.purdue.edu"
+  ],
+  "hub2osg@scatter2.nanohub.org": [
+    "scatter2.nanohub.org"
+  ],
+  "hub2osg@submit.dev.nanohub.org": [
+    "submit.dev.nanohub.org"
+  ],
+  "huxley-osgsub-001.sdmz.amnh.org": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "jupyter-notebook-mhdsjuptest-7d4f79f7ff-htg4s@jupyter-notebook-mhdsjuptest-7d4f79f7ff-htg4s": [
+    "flock.opensciencegrid.org"
+  ],
+  "jupyterlab-mhdstest-5ffcb8fd86-mfhjx@jupyterlab-mhdstest-5ffcb8fd86-mfhjx": [
+    "flock.opensciencegrid.org"
+  ],
+  "jupyterlab-mhdstest-65958dd4bf-whqld@jupyterlab-mhdstest-65958dd4bf-whqld": [
+    "flock.opensciencegrid.org"
+  ],
+  "lambda06.rowan.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "learn.chtc.wisc.edu": [
+    "cm.chtc.wisc.edu"
+  ],
+  "login-el7.xenon.ci-connect.net": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "login-test.osgconnect.net": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "login.ci-connect.uchicago.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "login.collab.ci-connect.net": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "login.duke.ci-connect.net": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "login.snowmass21.io": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "login.veritas.ci-connect.net": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "login.xenon.ci-connect.net": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org login.xenon.ci-connect.net"
+  ],
+  "login04.osgconnect.net": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org login04.osgconnect.net"
+  ],
+  "login05.osgconnect.net": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org login05.osgconnect.net"
+  ],
+  "mendel-osgsub-001.sdmz.amnh.org": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "nsgosg.sdsc.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "os-ce1.opensciencegrid.org": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "os-ce1.osgdev.chtc.io": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "osg-eic.jlab.org": [
+    "jlab-cm.osg.chtc.io",
+    "scicollector901.jlab.org"
+  ],
+  "osg-login2.pace.gatech.edu": [
+    "osg-login2.pace.gatech.edu"
+  ],
+  "osg-moller.jlab.org": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "osg-prp-submit.nautilus.optiputer.net": [
+    "flock.opensciencegrid.org"
+  ],
+  "osg-solid.jlab.org": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "osg-sw-submit.chtc.wisc.edu": [
+    "cm.chtc.wisc.edu"
+  ],
+  "osg-vo.isi.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "osgsub01.sdcc.bnl.gov": [
+    "jlab-cm.osg.chtc.io",
+    "scicollector901.jlab.org"
+  ],
+  "ospool-ap4041.chtc.wisc.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org",
+    "ospool-ap4041.chtc.wisc.edu"
+  ],
+  "ospool-eht.chtc.wisc.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org",
+    "ospool-eht.chtc.wisc.edu"
+  ],
+  "ospool-eht2000.chtc.wisc.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org ospool-eht2000.chtc.wisc.edu"
+  ],
+  "path-ap2101.chtc.wisc.edu": [
+    "htcondor-cm-path.osg.chtc.io"
+  ],
+  "pegasus.access-ci.org": [
+    "149.165.153.107",
+    "pegasus.access-ci.org"
+  ],
+  "scatter2.dev.nanohub.org": [
+    "scatter2.dev.nanohub.org"
+  ],
+  "scatter2.nanohub.org": [
+    "scatter2.nanohub.org"
+  ],
+  "scosg16.jlab.org": [
+    "osg-jlab-1.t2.ucsd.edu",
+    "scicollector.jlab.org"
+  ],
+  "scosg20.jlab.org": [
+    "osg-jlab-1.t2.ucsd.edu",
+    "scicollector.jlab.org"
+  ],
+  "scosg2201.jlab.org": [
+    "jlab-cm.osg.chtc.io",
+    "scicollector901.jlab.org"
+  ],
+  "scosg2202.jlab.org": [
+    "jlab-cm.osg.chtc.io",
+    "scicollector901.jlab.org"
+  ],
+  "scosgdev16.jlab.org": [
+    "osg-jlab-1.t2.ucsd.edu",
+    "scicollector.jlab.org"
+  ],
+  "scott.grid.uchicago.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org",
+    "scott.grid.uchicago.edu"
+  ],
+  "spt-condor-osg24.grid.uchicago.edu": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org",
+    "spt-condor-osg24.grid.uchicago.edu"
+  ],
+  "sub-2.icecube.wisc.edu": [
+    "glidein-cm.icecube.wisc.edu"
+  ],
+  "sub-grid-test.icecube.wisc.edu": [
+    "glidein-cm.icecube.wisc.edu"
+  ],
+  "submit-1.chtc.wisc.edu": [
+    "cm.chtc.wisc.edu"
+  ],
+  "submit.dev.nanohub.org": [
+    "submit.dev.nanohub.org"
+  ],
+  "submit06.mit.edu": [
+    "submit06.mit.edu"
+  ],
+  "submit2.chtc.wisc.edu": [
+    "cm.chtc.wisc.edu"
+  ],
+  "submit3.chtc.wisc.edu": [
+    "cm.chtc.wisc.edu"
+  ],
+  "submit4.chtc.wisc.edu": [
+    "cm.chtc.wisc.edu"
+  ],
+  "submit6.chtc.wisc.edu": [
+    "htcondor-cm-path.osg.chtc.io"
+  ],
+  "submittest0000.chtc.wisc.edu": [
+    "cm.chtc.wisc.edu"
+  ],
+  "tlmiller@login04.osgconnect.net": [
+    "cm-1.ospool.osg-htc.org",
+    "cm-2.ospool.osg-htc.org"
+  ],
+  "uclhc-1.ps.uci.edu": [
+    "uclhc-2.ps.uci.edu"
+  ],
+  "uclhc-2.gp.internal": [
+    "gpatlas2.ps.uci.edu"
+  ],
+  "uclhc-2.ps.uci.edu": [
+    "gpatlas2.ps.uci.edu"
+  ],
+  "wright-ap4000.chtc.wisc.edu": [
+    "cm.chtc.wisc.edu"
+  ],
+  "xd-submit0000.chtc.wisc.edu": [
+    "flock.opensciencegrid.org"
+  ]
+}

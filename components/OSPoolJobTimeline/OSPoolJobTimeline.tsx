@@ -44,7 +44,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
   const [speed, setSpeed] = useState(1);
 
   const handlePause = () => setIsPaused(p => !p);
-  const handleReset = () => { setTimeIndex(0); };
+  const handleReset = () => { setTimeIndex(0); setIsPaused(true); };
 
   // advance one step per second; reset when the source array changes
   useEffect(() => {
@@ -156,6 +156,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
           }}
         ></Box>
         <Typography mt={1} variant="subtitle2" component="div">Training Epochs Grouped By Run</Typography>
+        <Typography variant="subtitle2" component="div">Training Runs Completed: {Object.values(jobsByRun).filter(r => r.jobs.filter(j => j.CompletionDate >= time).length == 0).length}</Typography>
       </Box>
       <Box
         sx={{
@@ -176,7 +177,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
             displayFunction={j => j.CompletionDate < time}
           />
         </Box>
-        <Typography mt={1} textAlign={"right"} variant="subtitle2" component="div">Epochs Completed</Typography>
+        <Typography mt={1} textAlign={"right"} variant="subtitle2" component="div">Epochs Completed: {Object.values(jobsByRun).flatMap(r => r.jobs).filter((a) => a.CompletionDate <= time).length}</Typography>
       </Box>
       <Box
         sx={{
