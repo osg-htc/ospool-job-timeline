@@ -107,7 +107,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
             fixedCols={60}
           />
         </Box>
-        <Typography mt={1} textAlign={"right"} variant="subtitle2" component="div">Epochs Completed: {Object.values(jobResources).flatMap(r => r.jobs).filter((a) => a.CompletionDate <= time).length}</Typography>
+        <Typography mt={1} textAlign={"right"} variant="subtitle2" component="div">Inferences Completed: {Object.values(jobResources).flatMap(r => r.jobs).filter((a) => a.CompletionDate <= time).length}</Typography>
       </Box>
       <Box
         sx={{
@@ -149,7 +149,7 @@ const OSPoolJobTimeline = ({startTime, endTime, jobResources, timeSegments = 100
         }}
       >
         <Box sx={{ width: 50, height: markerHeight * 5, bgcolor: stringToColor('cool string'), flexShrink: 0 }} />
-        <Typography variant="caption">= {jobsPerRect.toLocaleString()} Epochs, top bar rounds up</Typography>
+        <Typography variant="caption">= {jobsPerRect.toLocaleString()} Inferences, top bar rounds up</Typography>
       </Box>
       <DateTimePlayer time={time} isPaused={isPaused} speed={speed} setSpeed={setSpeed} onPause={handlePause} onReset={handleReset} />
     </>
