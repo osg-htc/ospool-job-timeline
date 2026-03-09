@@ -12,7 +12,7 @@ interface TimePlayerProps {
   onReset: () => void;
 }
 
-const SPEEDS = [1, 10, 100];
+const SPEEDS = [1, 3, 10, 100];
 
 const DateTimePlayer = ({time, isPaused, speed = 1, setSpeed, onPause, onReset}: TimePlayerProps) => {
   const handleSpeedClick = () => {
